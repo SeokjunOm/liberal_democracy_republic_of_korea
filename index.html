@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유민주주의 원칙 위협 분석</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e0e0e0;
+        }
+
+        .presentation-container {
+            width: 90%;
+            max-width: 1200px;
+            background: linear-gradient(145deg, #0f0f23, #1a1a2e);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            overflow: hidden;
+            border: 1px solid #16213e;
+        }
+
+        .slide {
+            display: none;
+            padding: 50px;
+            min-height: 700px;
+            position: relative;
+            background: linear-gradient(to bottom, #0f0f23, #1a1a2e);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide h1 {
+            font-size: 2.2em;
+            color: #e8eaf6;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #3f51b5;
+            padding-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide h2 {
+            font-size: 1.8em;
+            color: #9fa8da;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slide h3 {
+            font-size: 1.4em;
+            color: #7986cb;
+            margin: 20px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .principle-card {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #3f51b5;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 1px solid #16213e;
+        }
+
+        .principle-card h3 {
+            color: #7986cb;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .principle-card p {
+            color: #c5cae9;
+            line-height: 1.6;
+        }
+
+        .law-reference {
+            background: #0f0f23;
+            border: 1px solid #16213e;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: #9e9e9e;
+        }
+
+        .law-reference strong {
+            color: #9fa8da;
+        }
+
+        .trend-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #5c6bc0;
+            border: 1px solid #16213e;
+        }
+
+        .judgment-section {
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-weight: bold;
+            border: 2px solid;
+        }
+
+        .judgment-danger {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+            border-color: #5c6bc0;
+            color: #c5cae9;
+        }
+
+        .judgment-warning {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            border-color: #7986cb;
+            color: #e8eaf6;
+        }
+
+        .evidence-section {
+            background: #0f0f23;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #3f51b5;
+        }
+
+        .evidence-item {
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #16213e;
+        }
+
+        .evidence-item:last-child {
+            border-bottom: none;
+        }
+
+        .source-link {
+            font-size: 0.8em;
+            color: #2196f3;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .source-link:hover {
+            color: #42a5f5;
+            text-decoration: underline;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: #0f0f23;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 1px solid #16213e;
+        }
+
+        .summary-table th {
+            background: #1a1a2e;
+            color: #e8eaf6;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 2px solid #3f51b5;
+        }
+
+        .summary-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #16213e;
+            color: #c5cae9;
+        }
+
+        .summary-table tr:hover {
+            background: #16213e;
+        }
+
+        .status-danger {
+            color: #5c6bc0;
+            font-weight: bold;
+        }
+
+        .status-warning {
+            color: #7986cb;
+            font-weight: bold;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 50%, #1a1a2e 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.6;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 2px solid #3f51b5;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            color: #e8eaf6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #5c6bc0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(63,81,181,0.3);
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #5c6bc0, #7986cb);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(63,81,181,0.4);
+        }
+
+        .nav-btn:disabled {
+            background: #424242;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #0f0f23;
+            color: #e8eaf6;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid #3f51b5;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+            color: #c0c0c0;
+        }
+
+        li:before {
+            content: "▶";
+            color: #5c6bc0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .title-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            color: white;
+        }
+
+        .title-slide h1 {
+            font-size: 3em;
+            color: #e8eaf6;
+            border: none;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.7);
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            color: #9fa8da;
+        }
+
+        .priority-list {
+            counter-reset: priority;
+        }
+
+        .priority-item {
+            counter-increment: priority;
+            background: #16213e;
+            border-left: 5px solid #3f51b5;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .priority-item::before {
+            content: counter(priority);
+            position: absolute;
+            left: -15px;
+            top: -10px;
+            background: #3f51b5;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .constitution-quote {
+            background: linear-gradient(135deg, #0f0f23 0%, #16213e 100%);
+            border: 1px solid #16213e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            border-left: 5px solid #7986cb;
+        }
+
+        .constitution-quote::before {
+            content: "\"";
+            font-size: 3em;
+            color: #7986cb;
+            position: absolute;
+            margin-top: -15px;
+            margin-left: -10px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .small-text {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .emphasis {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .timeline-item {
+            background: #2d2d2d;
+            border-left: 4px solid #ff6b6b;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .timeline-date {
+            color: #ffd93d;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter" id="slideCounter">1 / 10</div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>⚠️ 자유민주주의 위기 분석</h1>
+            <div class="subtitle">이재명 정부는 자유민주주의를 위협하는가?</div>
+            <div style="font-size: 1.1em; opacity: 0.8; margin-top: 30px; color: #9fa8da;">
+                권력분립 • 법치주의 • 언론자유의 현실적 위험
+            </div>
+            <div class="warning-box" style="margin-top: 40px;">
+                민주주의 수호를 위한 시민의식 경각심 제고
+            </div>
+        </div>
+
+        <!-- Slide 2: 자유민주주의란? -->
+        <div class="slide">
+            <h1>🏛️ 자유민주주의란?</h1>
+            
+            <div class="constitution-quote">
+                <strong>대한민국 헌법 전문:</strong> "자율과 조화를 바탕으로 자유민주적 기본질서를 더욱 확고히 하여"<br>
+                <strong>헌법 제4조:</strong> "자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다"
+                <a href="https://www.law.go.kr/LSW/lsLawLinkInfo.do?lsJoLnkSeq=900045088&chrClsCd=010202&lsId=001444&print=print" class="source-link" target="_blank">[출처: 국가법령정보센터]</a>
+            </div>
+
+            <div class="two-column">
+                <div class="principle-card">
+                    <h3>📖 정의</h3>
+                    <p><strong>자유민주주의(Liberal Democracy)</strong>는 개인의 자유와 권리를 보장하는 헌법 하에서, 민주적 절차로 선출된 대표자들이 입헌주의 틀 내에서 의사결정을 하는 체제</p>
+                    <div class="law-reference">
+                        <strong>헌법재판소 판례:</strong> "자유민주적 기본질서에서 엄연히 '자유민주주의'가 도출된다" (헌재 여러 결정문)
+                    </div>
+                </div>
+                
+                <div class="principle-card">
+                    <h3>🎯 핵심 특징</h3>
+                    <ul>
+                        <li>공정한 선거와 다원주의</li>
+                        <li>권력분립과 견제균형</li>
+                        <li>법치주의와 사유재산권</li>
+                        <li>표현의 자유와 시민권 보장</li>
+                        <li>문민통제와 시민자유</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion-box">
+                <strong>🇰🇷 대한민국의 지향:</strong> 헌법 제1조 "대한민국은 민주공화국이다"에서 시작하여, 자유민주적 기본질서를 통해 <span class="emphasis">자유민주주의 국가임을 명확히 선언</span>
+            </div>
+        </div>
+
+        <!-- Slide 3: 자유민주주의 5대 원칙 -->
+        <div class="slide">
+            <h1>⚖️ 자유민주주의 5대 핵심원칙</h1>
+            
+            <div class="priority-list">
+                <div class="priority-item">
+                    <h3>권력분립 원칙</h3>
+                    <p>입법•행정•사법부 간 상호 견제와 균형으로 권력집중 방지</p>
+                    <div class="law-reference">
+                        <strong>헌법적 근거:</strong> 제40조(입법권), 제66조(행정권), 제101조(사법권) - 삼권분립 명시
+                    </div>
+                </div>
+
+                <div class="priority-item">
+                    <h3>법치주의 원칙</h3>
+                    <p>모든 권력은 헌법과 법률에 따라 행사, 누구도 법 위에 있지 않음</p>
+                    <div class="law-reference">
+                        <strong>헌법적 근거:</strong> 제11조(법 앞의 평등), 제12조(적법절차), 제37조(기본권 제한 한계)
+                    </div>
+                </div>
+
+                <div class="priority-item">
+                    <h3>기본권 보장 원칙</h3>
+                    <p>인간의 존엄과 가치, 기본적 인권의 불가침성 보장</p>
+                    <div class="law-reference">
+                        <strong>헌법적 근거:</strong> 제10조(인간의 존엄성), 제11조~제39조(기본권 각론)
+                    </div>
+                </div>
+
+                <div class="priority-item">
+                    <h3>표현의 자유 원칙</h3>
+                    <p>언론•출판•집회•결사의 자유, 정부 비판권 보장</p>
+                    <div class="law-reference">
+                        <strong>헌법적 근거:</strong> 제21조(언론•출판•집회•결사의 자유), 제22조(학문•예술의 자유)
+                    </div>
+                </div>
+
+                <div class="priority-item">
+                    <h3>국민주권 원칙</h3>
+                    <p>모든 권력은 국민으로부터, 대표자는 국민에게 책임</p>
+                    <div class="law-reference">
+                        <strong>헌법적 근거:</strong> 제1조②(국민주권), 제24조(선거권), 제67조(대통령 선거)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: 권력분립 위험 평가 -->
+        <div class="slide">
+            <h1>⚖️ 권력분립 원칙 위험 평가</h1>
+            
+            <div class="judgment-section judgment-danger">
+                <h3>🚨 평가 결과: 심각한 위험 상황</h3>
+                <p>입법부 장악 + 사법부 개입 시도 = <strong>권력분립 붕괴 위험</strong></p>
+            </div>
+
+            <div class="evidence-section">
+                <h3>📋 구체적 증거와 근거</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.6.4 (취임 당일)</div>
+                    <strong>대법관 30명 증원법 강행처리</strong>
+                    <ul>
+                        <li>기존 14명→30명으로 16명 증원 (1년 4명씩 4년간)</li>
+                        <li>이재명 대통령이 16명 신규 임명권 확보</li>
+                        <li>사실상 '이재명 코드' 대법관으로 사법부 장악 가능</li>
+                    </ul>
+                    <a href="https://www.newsis.com/view/NISX20250604_0003201030" class="source-link" target="_blank">[뉴시스 2025.6.4]</a>
+                    <a href="https://www.ytn.co.kr/_cs/_ln_0134_202506041221086805_005.html" class="source-link" target="_blank">[YTN 2025.6.4]</a>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.5.2</div>
+                    <strong>형사소송법 개정안 발의 (대통령 재판중지법)</strong>
+                    <ul>
+                        <li>현직 대통령 재임 중 형사재판 절차 중지 조항 신설</li>
+                        <li>무죄•면소•형의 면제 판결시에만 재판 진행 허용</li>
+                        <li>헌법 제84조 불소추특권을 법률로 강화</li>
+                    </ul>
+                    <a href="https://www.newdaily.co.kr/site/data/html/2025/05/02/2025050200159.html" class="source-link" target="_blank">[뉴데일리 2025.5.2]</a>
+                    <a href="https://biz.heraldcorp.com/article/10484649" class="source-link" target="_blank">[헤럴드경제 2025.5.11]</a>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">현재 진행</div>
+                    <strong>여당의 국회 과반 장악</strong>
+                    <ul>
+                        <li>더불어민주당 단독 과반으로 견제 장치 무력화</li>
+                        <li>행정부(대통령) + 입법부(국회) 동시 장악</li>
+                        <li>대법관 임명 국회동의 과정에서 여당 입맛대로 선별 가능</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 전문가 경고:</strong> "삼권분립이 무너질 수 있다" - 전직 헌법재판관<br>
+                "베네수엘라 차베스 정권과 동일한 패턴" - 박준태 국민의힘 의원
+                <a href="https://v.daum.net/v/20250526005552978" class="source-link" target="_blank">[조선일보 2025.5.26]</a>
+            </div>
+        </div>
+
+        <!-- Slide 5: 법치주의 위험 평가 -->
+        <div class="slide">
+            <h1>📜 법치주의 원칙 위험 평가</h1>
+            
+            <div class="judgment-section judgment-danger">
+                <h3>🚨 평가 결과: 법의 형평성 심각한 훼손</h3>
+                <p>특정인(대통령)을 위한 맞춤형 법 개정 = <strong>"법 앞의 평등" 원칙 파괴</strong></p>
+            </div>
+
+            <div class="evidence-section">
+                <h3>📋 구체적 증거와 근거</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.5.14</div>
+                    <strong>공직선거법 개정안 법사위 통과 ('이재명 면소법')</strong>
+                    <ul>
+                        <li>허위사실공표죄 구성요건에서 '행위' 항목 삭제</li>
+                        <li>이재명 대통령이 유죄 취지 판결받은 바로 그 죄목</li>
+                        <li>최종 판결 확정 전 시행되면 면소 판결로 무죄 처리</li>
+                    </ul>
+                    <a href="https://imnews.imbc.com/news/2025/politics/article/6715869_36711.html" class="source-link" target="_blank">[MBC 2025.5.14]</a>
+                    <a href="https://www.sedaily.com/NewsView/2GSSMIUNIL" class="source-link" target="_blank">[서울경제 2025.5.14]</a>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.11.21</div>
+                    <strong>선거법 벌금 기준 상향 개정안 (100만원→1000만원)</strong>
+                    <ul>
+                        <li>당선무효•피선거권 박탈 기준을 10배 완화</li>
+                        <li>이재명 1심 선고(징역1년 집행유예2년) 직후 발의</li>
+                        <li>과거 동일 죄로 처벌받은 다른 정치인들과 차별 조치</li>
+                    </ul>
+                    <a href="https://www.khan.co.kr/article/202411211135001" class="source-link" target="_blank">[경향신문 2024.11.21]</a>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.5.1</div>
+                    <strong>대법원 유죄 취지 파기환송 판결</strong>
+                    <ul>
+                        <li>이재명 공직선거법 위반 사건 유죄 취지로 고법 환송</li>
+                        <li>바로 다음날 '재판중지법' 발의로 즉시 대응</li>
+                        <li>사법부 판단에 대한 입법부의 즉각적 무력화 시도</li>
+                    </ul>
+                    <a href="https://www.lawtimes.co.kr/news/207713" class="source-link" target="_blank">[법률신문 2025.5.1]</a>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 법무부 공식 반대 의견:</strong> "대통령직이 범죄의 도피처로 전락할 우려" / "특정인을 위한 법률안으로 평등원칙 위배, 위헌 소지 농후"
+                <a href="https://biz.heraldcorp.com/article/10484649" class="source-link" target="_blank">[헤럴드경제 2025.5.11]</a>
+            </div>
+        </div>
+
+        <!-- Slide 6: 언론자유 위험 평가 -->
+        <div class="slide">
+            <h1>📰 언론자유 원칙 위험 평가</h1>
+            
+            <div class="judgment-section judgment-warning">
+                <h3>⚠️ 평가 결과: 언론에 대한 적대적 태도</h3>
+                <p>직접적 탄압은 없으나 <strong>언론관과 표현 방식에서 심각한 우려</strong></p>
+            </div>
+
+            <div class="evidence-section">
+                <h3>📋 구체적 증거와 근거</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.6.14</div>
+                    <strong>"언론은 검찰의 애완견" 발언</strong>
+                    <ul>
+                        <li>"진실 보도는커녕, 마치 검찰의 애완견처럼 주는 정보 받아서 열심히 왜곡, 조작하고 있지 않습니까?"</li>
+                        <li>법정 출석 길에 기자들 향해 공개적으로 발언</li>
+                        <li>언론 전체를 '애완견'으로 매도하는 발언</li>
+                    </ul>
+                    <a href="https://www.pressian.com/pages/articles/2024061613374662906" class="source-link" target="_blank">[프레시안 2024.6.16]</a>
+                    <a href="https://www.mediatoday.co.kr/news/articleView.html?idxno=318757" class="source-link" target="_blank">[미디어오늘 2024.6.15]</a>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.6.17</div>
+                    <strong>언론단체 공동 사과 요구</strong>
+                    <ul>
+                        <li>한국기자협회, 전국언론노조, 방송기자연합회 공동성명</li>
+                        <li>"언론인에 대한 과도한 망언을 사과하라" 요구</li>
+                        <li>"언론자유를 정면으로 부정하는 망발" 규정</li>
+                    </ul>
+                    <a href="https://www.newsis.com/view/NISX20240617_0002775845" class="source-link" target="_blank">[뉴시스 2024.6.17]</a>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">과거 기록</div>
+                    <strong>성남시장·경기지사 시절 언론 관련 발언들</strong>
+                    <ul>
+                        <li>과거 기록</li>
+                        <li>성남시장·경기지사 시절 언론 관련 발언들</li>
+                        <li>비판적 언론에 대한 "폐간" 언급</li>
+                        <li>"기자 = 검찰 애완견" 등 언론 비하 표현 지속</li>
+                        <li>언론 비판에 대한 수용도 낮음</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">대선 공약</div>
+                    <strong>"극우·차별 콘텐츠 제한" 공약</strong>
+                    <ul>
+                        <li>모호한 기준의 콘텐츠 제한 정책</li>
+                        <li>표현의 자유 위축 가능성</li>
+                        <li>정부 판단에 따른 언론 규제 우려</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 정치권 비판:</strong> "조폭 같은 막말" - 유승민 전 의원 / "독재자 예행연습" - 나경원 의원 / "언론 전체를 적으로 삼으면 그게 민주주의자입니까?" - 이철희 전 의원
+            </div>
+        </div>
+
+        <!-- Slide 7: 종합 위험도 평가 -->
+        <div class="slide">
+            <h1>📊 종합 위험도 평가</h1>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>민주주의 원칙</th>
+                        <th>위험도</th>
+                        <th>핵심 위험요소</th>
+                        <th>구체적 증거</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>권력분립</strong></td>
+                        <td class="status-danger">🚨 매우 위험</td>
+                        <td>사법부 장악 시도<br>입법부 단독 장악</td>
+                        <td>대법관 30명 증원<br>취임 당일 강행</td>
+                    </tr>
+                    <tr>
+                        <td><strong>법치주의</strong></td>
+                        <td class="status-danger">🚨 매우 위험</td>
+                        <td>특정인 맞춤 법 개정<br>법의 평등성 훼손</td>
+                        <td>면소법, 재판중지법<br>법무부 위헌 지적</td>
+                    </tr>
+                    <tr>
+                        <td><strong>언론자유</strong></td>
+                        <td class="status-warning">⚠️ 주의 필요</td>
+                        <td>언론에 적대적 태도<br>비판 수용도 낮음</td>
+                        <td>"애완견" 발언<br>언론단체 사과 요구</td>
+                    </tr>
+                    <tr>
+                        <td><strong>기본권 보장</strong></td>
+                        <td class="status-warning">⚠️ 관찰 필요</td>
+                        <td>표현의 자유 제한 가능성<br>모호한 규제 기준</td>
+                        <td>극우 콘텐츠 제한 공약<br>정부 재량 확대</td>
+                    </tr>
+                    <tr>
+                        <td><strong>국민주권</strong></td>
+                        <td class="status-warning">⚠️ 관찰 필요</td>
+                        <td>사법 판단 무력화<br>국민 의사 우회</td>
+                        <td>대법원 판결 직후<br>즉시 법 개정 추진</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="two-column">
+                <div class="principle-card">
+                    <h3>🔴 즉시 위험 요소</h3>
+                    <ul>
+                        <li>취임 당일 사법부 개입</li>
+                        <li>본인 재판 관련 법 개정</li>
+                        <li>권력기관 동시 장악</li>
+                        <li>견제 장치 무력화</li>
+                    </ul>
+                </div>
+                
+                <div class="principle-card">
+                    <h3>🟡 중장기 우려 요소</h3>
+                    <ul>
+                        <li>언론에 대한 적대적 인식</li>
+                        <li>비판 세력에 대한 낮은 관용</li>
+                        <li>모호한 기준의 규제 정책</li>
+                        <li>권위주의적 성향</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion-box">
+                <strong>⚠️ 종합 판단:</strong> 이재명 정부는 <span class="emphasis">표면적으로는 민주적 절차를 유지</span>하고 있으나, <span class="emphasis">실질적으로는 자유민주주의의 핵심 원칙들을 체계적으로 훼손</span>하고 있음
+            </div>
+        </div>
+
+        <!-- Slide 8: 국제 사례 비교 -->
+        <div class="slide">
+            <h1>🌍 국제 사례 비교 분석</h1>
+            
+            <h2>📈 권위주의 국가들의 공통 패턴</h2>
+            
+            <div class="evidence-section">
+                <h3>🔍 베네수엘라 차베스 정권 (1999-2013)</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2004년</div>
+                    <strong>대법원 확대 및 장악</strong>
+                    <ul>
+                        <li>대법관 수를 20명→32명으로 확대</li>
+                        <li>모든 대법관을 차베스 편으로 임명</li>
+                        <li>재임 기간 중 정권에 반하는 판결 0건</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2001-2007년</div>
+                    <strong>언론 탄압 및 장악</strong>
+                    <ul>
+                        <li>비판적 언론사 허가 취소</li>
+                        <li>정부 비판 언론인 구속</li>
+                        <li>국영 언론 확대로 여론 통제</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-section">
+                <h3>🔍 헝가리 오르반 정권 (2010-현재)</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2011-2012년</div>
+                    <strong>헌법재판소 무력화</strong>
+                    <ul>
+                        <li>헌법재판소 권한 대폭 축소</li>
+                        <li>정부 정책에 대한 사법 견제 차단</li>
+                        <li>새 헌법 제정으로 권력 집중</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2010-현재</div>
+                    <strong>언론 독립성 훼손</strong>
+                    <ul>
+                        <li>정부 우호 매체에 광고 집중</li>
+                        <li>비판 매체 경제적 압박</li>
+                        <li>공영방송 정부 선전 도구화</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="principle-card">
+                    <h3>⚠️ 공통 패턴 (1단계)</h3>
+                    <ul>
+                        <li><strong>사법부 무력화:</strong> 판사 증원/교체</li>
+                        <li><strong>법 개정:</strong> 자신에게 유리하게</li>
+                        <li><strong>견제 제거:</strong> 야당/시민사회 압박</li>
+                        <li><strong>언론 압박:</strong> 비판 매체 겨냥</li>
+                    </ul>
+                </div>
+                
+                <div class="principle-card">
+                    <h3>🚨 한국 현 상황과 유사점</h3>
+                    <ul>
+                        <li>✅ 대법관 대폭 증원 추진</li>
+                        <li>✅ 본인 재판 관련 법 개정</li>
+                        <li>✅ 여당 단독 과반 장악</li>
+                        <li>✅ 언론에 적대적 발언</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>📚 전문가 분석:</strong> "이재명 당선땐 사법부 코드인사로 '진짜 독재' 될 것" - 전 헌법연구위원<br>
+                "베네수엘라 차베스와 동일한 방식" - 박준태 국민의힘 의원
+                <a href="https://www.newdaily.co.kr/site/data/html/2025/05/27/2025052700222.html" class="source-link" target="_blank">[뉴데일리 2025.5.27]</a>
+            </div>
+        </div>
+
+        <!-- Slide 9: 시민이 해야 할 일 -->
+        <div class="slide">
+            <h1>👥 민주주의 수호를 위한 시민의 역할</h1>
+            
+            <div class="judgment-section judgment-danger">
+                <h3>🚨 현재 상황 진단</h3>
+                <p>민주주의는 <strong>한 번 잃으면 되찾기 어려운</strong> 소중한 가치입니다.<br>
+                지금이 바로 <span class="emphasis">시민의식이 필요한 결정적 순간</span>입니다.</p>
+            </div>
+
+            <div class="priority-list">
+                <div class="priority-item">
+                    <h3>🔍 감시와 견제</h3>
+                    <ul>
+                        <li><strong>정부 정책 면밀 추적:</strong> 법안 발의부터 통과까지 전 과정 모니터링</li>
+                        <li><strong>국회 의정활동 감시:</strong> 국민의 대표로서 제대로 역할하는지 확인</li>
+                        <li><strong>사법부 독립성 관찰:</strong> 판결의 공정성과 독립성 여부 지켜보기</li>
+                    </ul>
+                </div>
+
+                <div class="priority-item">
+                    <h3>📢 목소리 내기</h3>
+                    <ul>
+                        <li><strong>민주주의 위기 알리기:</strong> 주변 사람들과 상황의 심각성 공유</li>
+                        <li><strong>시민단체 활동 참여:</strong> 민주주의 수호 단체들의 활동 지원</li>
+                        <li><strong>평화적 의사표현:</strong> 집회, 시위 등 합법적 방법으로 반대 의사 표명</li>
+                    </ul>
+                </div>
+
+                <div class="priority-item">
+                    <h3>🗳️ 선거를 통한 견제</h3>
+                    <ul>
+                        <li><strong>지방선거 적극 참여:</strong> 2026년 지방선거에서 견제 세력 선택</li>
+                        <li><strong>국정감사 관심:</strong> 국회의 정부 견제 기능이 작동하는지 확인</li>
+                        <li><strong>차기 선거 준비:</strong> 민주주의 가치를 지키는 후보 발굴과 지원</li>
+                    </ul>
+                </div>
+
+                <div class="priority-item">
+                    <h3>📰 정보 접근과 판단</h3>
+                    <ul>
+                        <li><strong>다양한 언론 확인:</strong> 편향되지 않은 정보 습득을 위해 여러 매체 비교</li>
+                        <li><strong>팩트체크 습관화:</strong> 정부 발표와 실제 현실 간 차이 검증</li>
+                        <li><strong>비판적 사고:</strong> 정부 홍보에 휘둘리지 않는 독립적 판단력 유지</li>
+                    </ul>
+                </div>
+
+                <div class="priority-item">
+                    <h3>🤝 연대와 협력</h3>
+                    <ul>
+                        <li><strong>시민사회 네트워크:</strong> 민주주의를 지키려는 시민들과 연대</li>
+                        <li><strong>국제사회 관심 유도:</strong> 한국 민주주의 후퇴에 대한 국제적 관심 이끌어내기</li>
+                        <li><strong>차세대 교육:</strong> 민주주의 가치를 다음 세대에 전수하기</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: 결론 및 경고 메시지 -->
+        <div class="slide">
+            <h1>⚡ 결론: 민주주의 위기의 현실</h1>
+            
+            <div class="constitution-quote">
+                <strong>헌법 전문의 경고:</strong> "자유민주적 기본질서를 더욱 확고히 하여... 우리와 우리의 후손의 안전과 자유와 행복을 영원히 확보할 것을 다짐하면서"
+            </div>
+
+            <div class="two-column">
+                <div class="principle-card">
+                    <h3>✅ 확인된 위험 신호</h3>
+                    <ul>
+                        <li>취임 당일 사법부 개입 시도</li>
+                        <li>본인 재판을 위한 법 개정</li>
+                        <li>권력분립 원칙 무시</li>
+                        <li>법의 평등성 훼손</li>
+                        <li>언론에 대한 적대적 태도</li>
+                        <li>국제 권위주의 사례와 동일 패턴</li>
+                    </ul>
+                </div>
+                
+                <div class="principle-card">
+                    <h3>🎯 시급한 대응 과제</h3>
+                    <ul>
+                        <li>사법부 독립성 사수</li>
+                        <li>법치주의 원칙 회복</li>
+                        <li>언론자유 보장</li>
+                        <li>권력 견제 시스템 복원</li>
+                        <li>시민사회 역할 강화</li>
+                        <li>국제사회 연대 구축</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion-box">
+                <h3 style="color: white; margin-bottom: 20px;">🚨 최종 경고 메시지</h3>
+                <p style="font-size: 1.2em; line-height: 1.8;">
+                    <strong>지금 우리가 목격하고 있는 것은</strong><br><br>
+                    
+                    단순한 정치적 갈등이 아닙니다.<br>
+                    <span class="emphasis">자유민주주의 체제 자체에 대한 체계적 도전</span>입니다.<br><br>
+                    
+                    베네수엘라, 헝가리에서 일어났던 일이<br>
+                    <span class="emphasis">지금 대한민국에서 현실이 되고 있습니다.</span><br><br>
+                    
+                    <strong style="font-size: 1.3em; color: #9fa8da;">
+                    남의 일이 아닙니다.<br>
+                    당장 우리 삶으로 다가온 현실입니다.
+                    </strong>
+                </p>
+            </div>
+
+            <div class="warning-box" style="margin-top: 30px;">
+                <strong>📢 우리의 선택:</strong><br>
+                자유 민주주의를 지키는 시민이 될 것인가?<br>
+                전체주의를 바라만 보는 방관자가 될 것인가?<br><br>
+                <span style="font-size: 1.1em; color: #9fa8da;">역사는 지금 우리의 선택을 지켜보고 있습니다.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" id="prevBtn">이전</button>
+        <button class="nav-btn" onclick="nextSlide()" id="nextBtn">다음</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateNavigation();
+            updateSlideCounter();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function updateNavigation() {
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function updateSlideCounter() {
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                previousSlide();
+            }
+        });
+
+        // 초기 상태 설정
+        updateNavigation();
+        updateSlideCounter();
+    </script>
+</body>
+</html>
